@@ -27,6 +27,7 @@ def ping() -> Pong:
     return Pong()
 
 
+# Cut-off APIs
 @app.get('/getCutOff', response_model=CutOffTime)
 async def get_twitter_table_audits(
     # TODO Explain that we could ne less strict, e.g. allow lower case.
@@ -34,6 +35,12 @@ async def get_twitter_table_audits(
     currency_b: str = Query(min_length=3, max_length=3, regex='^[A-Z]+$'),
     date: datetime.date = Query()
 ) -> CutOffTime:
+    # TODO Replace with check if currency exists in db
+    if currency_a and False:
+        raise HTTPException(status_code=404, detail=f'Currency {currency_a} not found.')
+    if currency_b and False:
+        raise HTTPException(status_code=404, detail=f'Currency {currency_b} not found.')
+
     return CutOffTime(
         currency_a=Currency(
             iso=currency_a,
@@ -49,4 +56,3 @@ async def get_twitter_table_audits(
 
 if __name__ == '__main__':
     print('Nordea Coding Challenge by Mirko Biasini')
-
