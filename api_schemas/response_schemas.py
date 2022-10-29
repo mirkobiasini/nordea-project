@@ -13,4 +13,4 @@ class Pong(BaseModel):
 class CutOffTime(BaseModel):
     currency_a: Currency
     currency_b: Currency
-    cut_off_time: datetime.datetime
+    cut_off_time: str
