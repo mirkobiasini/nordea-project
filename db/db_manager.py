@@ -107,8 +107,3 @@ class DB_Manager:
             return float('inf')
         else:
             return float(cut_off_time)
-
-
-if __name__ == '__main__':
-    cache = DB_Manager.get_cache()
-    print(cache)

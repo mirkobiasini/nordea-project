@@ -52,10 +52,10 @@ async def get_cut_off_time(
 ) -> CutOffTime:
     # TODO Getting keys is atomic, so no lock
     data_currency_a = cut_off_times_cache.get(currency_a, None)
-    if currency_a is None:
+    if data_currency_a is None:
         raise HTTPException(status_code=404, detail=f'Currency A ({currency_a}) not found.')
     data_currency_b = cut_off_times_cache.get(currency_b, None)
-    if currency_b is None:
+    if data_currency_b is None:
         raise HTTPException(status_code=404, detail=f'Currency B ({currency_b}) not found.')
     today = datetime.date.today()
     if date < today:
