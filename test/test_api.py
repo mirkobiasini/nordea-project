@@ -23,7 +23,7 @@ def test_ping():
 
 
 def test_get_cut_off():
-    response = client.get('/getCutOff?currency_a=EUR&currency_b=USD&date=2022-10-30')
+    response = client.get('/getCutOff?currency_a=EUR&currency_b=USD&date=2022-10-31')
     assert response.status_code == 200
     assert response.json() == {
         'currency_a': {
@@ -39,7 +39,7 @@ def test_get_cut_off():
 
 
 def test_get_cut_off_bad_currency():
-    response = client.get('/getCutOff?currency_a=EURA&currency_b=USD&date=2022-10-30')
+    response = client.get('/getCutOff?currency_a=EURA&currency_b=USD&date=2022-10-31')
     assert response.status_code == 422
     assert response.json() == {
         'detail': [
@@ -59,7 +59,7 @@ def test_get_cut_off_bad_currency():
 
 
 def test_get_cut_off_missing_currency():
-    response = client.get('/getCutOff?currency_a=EUR&date=2022-10-30')
+    response = client.get('/getCutOff?currency_a=EUR&date=2022-10-31')
     assert response.status_code == 422
     assert response.json() == {
         'detail': [
@@ -76,7 +76,7 @@ def test_get_cut_off_missing_currency():
 
 
 def test_get_cut_off_not_found_currency():
-    response = client.get('/getCutOff?currency_a=AAA&currency_b=USD&date=2022-10-30')
+    response = client.get('/getCutOff?currency_a=AAA&currency_b=USD&date=2022-10-31')
     assert response.status_code == 404
     assert response.json() == {
         'detail': 'Currency A (AAA) not found.'
@@ -84,7 +84,7 @@ def test_get_cut_off_not_found_currency():
 
 
 def test_get_cut_off_bad_date():
-    response = client.get('/getCutOff?currency_a=EUR&currency_b=USD&date=30/10/2022')
+    response = client.get('/getCutOff?currency_a=EUR&currency_b=USD&date=31/10/2022')
     assert response.status_code == 422
     assert response.json() == {
         'detail': [
